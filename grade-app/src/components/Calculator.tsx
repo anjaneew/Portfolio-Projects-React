@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, type ChangeEvent } from "react";
 import { Alert } from "@mui/material";
 import GradeCard from "./GradeCard";
 
@@ -24,13 +24,13 @@ const Calculator = () => {
   });
 
   //scores of the student
-  const handleScoreChange = (e) => {
+  const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
     setScore(e.target.value);
     console.log(score);
   }
 
   //calculating the total score of the student
-  const calculateScore = (e):number => {
+  const calculateScore = (e: React.FormEvent<HTMLButtonElement>):number => {
     e.preventDefault()
     const markList = score.replace(" ", "").split(",");
     console.log(markList);
@@ -45,7 +45,7 @@ const Calculator = () => {
   }
 
   //score of the paper
-  const handleTotalScoreChange = (e) => {
+  const handleTotalScoreChange = (e:ChangeEvent<HTMLInputElement>) => {
     const totalScore = Number(e.target.value);
     setTotalScore(totalScore);
     console.log("The test is out of "+ totalScore);
