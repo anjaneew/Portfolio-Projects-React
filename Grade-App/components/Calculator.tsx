@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Alert } from "@mui/material";
+import GradeCard from "./GradeCard";
+
 
 type AlertType = {
     severity: string;
@@ -9,20 +11,25 @@ type AlertType = {
 
 const Calculator = () => {
 
+  //scores of the student
   const [score, setScore] = useState<string>("");
-  const [totalScore, setTotalScore] = useState<number>();
-  const [calculatedScore, setCalculatedScore] = useState<number| null>(null);
+  //score of the paper
+  const [totalScore, setTotalScore] = useState<number>(0);
+  //calculating the total score of the student
+  const [calculatedScore, setCalculatedScore] = useState<number | null>(null);
   const [alertDetails, setAlertDetails] = useState<AlertType>({
     severity: "",
     title: "",
     icon: "false"
   });
 
+  //scores of the student
   const handleScoreChange = (e) => {
     setScore(e.target.value);
     console.log(score);
   }
 
+  //calculating the total score of the student
   const calculateScore = (e):number => {
     e.preventDefault()
     const markList = score.replace(" ", "").split(",");
@@ -37,10 +44,11 @@ const Calculator = () => {
      return total;
   }
 
+  //score of the paper
   const handleTotalScoreChange = (e) => {
     const totalScore = Number(e.target.value);
     setTotalScore(totalScore);
-    console.log("The test is out of "+ totalScore)
+    console.log("The test is out of "+ totalScore);
     return totalScore;
   }
 
@@ -56,7 +64,7 @@ const Calculator = () => {
       case false:
         setAlertDetails({
           severity: "success",
-          title: "Success!. Generating the grades shortly...",
+          title: "Success!.",
           icon: ""
         });
         break;
@@ -70,27 +78,38 @@ const Calculator = () => {
   }
 
   return (
-    <form>
-      <h3>Enter the marks of sections:</h3>
-      <p>(multiple marks seperated by ',')</p>
-      <input 
-        type="text" 
-        value={score} 
-        onChange={(e) => handleScoreChange(e)}
-        name="scoreInput"
-        placeholder="enter the test scores"
-      /> <br/>
-      <input 
-        type="number"
-        value={totalScore}
-        onChange={(e) => handleTotalScoreChange(e)}
-        name="totalInput"
-        placeholder="enter the total test score"
-      /><br/><br/>
-      <button type="submit" onClick={(e) => calculateScore(e)}>Submit</button>
-      {calculatedScore !== null ? (<Alert security={alertDetails.severity} >{alertDetails.title}</Alert>) : ""}
-      
-    </form>
+    <div>
+      <section>
+      <form>
+        <h3></h3>
+        <label>
+          Enter scores (seperated by ',')
+        <br/>
+        <input 
+          type="text" 
+          value={score} 
+          onChange={(e) => handleScoreChange(e)}
+          name="scoreInput"
+          placeholder="enter the test scores"
+        /> </label><br/>
+        <label htmlFor="totalInput"> enter the total test score
+          <br/>
+        <input 
+          type="number"
+          value={totalScore}
+          onChange={(e) => handleTotalScoreChange(e)}
+          name="totalInput"
+          placeholder="enter the total test score"
+        /></label> <br/>
+        <button type="submit" onClick={(e) => calculateScore(e)}>Submit</button>
+        {calculatedScore !== null ? (<Alert security={alertDetails.severity} >{alertDetails.title}</Alert>) : ""}
+      </form>
+    </section>
+        <br/>
+      <section>
+       {calculatedScore !== null ? (<GradeCard studentTotal={calculatedScore} paperTotal={totalScore}/>) : (<p> Generating the grades shortly...</p>)}
+      </section>
+        </div>
   );
 };
 
