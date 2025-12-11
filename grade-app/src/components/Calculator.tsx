@@ -4,7 +4,7 @@ import GradeCard from "./GradeCard";
 
 
 type AlertType = {
-    severity: string;
+    severity: string; 
     title: string;
     icon: string;
 }
@@ -26,7 +26,7 @@ const Calculator = () => {
   //scores of the student
   const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
     setScore(e.target.value);
-    console.log(score);
+    console.log(e.target.value);
   }
 
   //calculating the total score of the student
@@ -36,12 +36,18 @@ const Calculator = () => {
     console.log(markList);
     let total = 0;
     markList.map((mark) => {total = Number(mark) + total});
-    console.log(total);
-    setCalculatedScore(total);
-    setScore("");
-    console.log(calculatedScore !== null ? ("Success!. Generating the grades shortly...") : "");
-    handleAlert(total);
-     return total;
+    if(total <= 0){
+      console.log(total + " is not a valid number.");
+      total = 0;
+    }
+    else {
+      console.log(total);
+      setCalculatedScore(total);
+      setScore("");
+      console.log(calculatedScore !== null ? ("Success!. Generating the grades shortly...") : "");
+      handleAlert(total);
+    }
+    return total;
   }
 
   //score of the paper

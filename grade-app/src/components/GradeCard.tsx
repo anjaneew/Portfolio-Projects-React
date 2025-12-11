@@ -11,7 +11,7 @@ const GradeCard = ({studentTotal, paperTotal}: ScoreTypes) => {
   const [letterGrade, setLetterGrade ] = useState<string>("");
   const [hasPassed, setHasPassed] = useState<boolean>();
 
- useEffect(() => {
+useEffect(() => {
 
   const displayResults = (score: number, total: number): void=> {
     try{
@@ -20,15 +20,15 @@ const GradeCard = ({studentTotal, paperTotal}: ScoreTypes) => {
       if(studentGrade !== 0){
         setGrade(studentGrade);
 
-        if (grade > 80){
+        if (studentGrade > 80){
             setLetterGrade('A');
             setHasPassed(true);
           }
-        else if (grade > 60 && grade < 80) {
+        else if (studentGrade > 60 && studentGrade < 80) {
             setLetterGrade('B');
             setHasPassed(true);
         }  
-        else if (grade > 50 && grade < 59) {
+        else if (studentGrade > 50 && studentGrade < 59) {
             setLetterGrade('C');
             setHasPassed(true);
         } 
@@ -57,7 +57,8 @@ const GradeCard = ({studentTotal, paperTotal}: ScoreTypes) => {
       </section>
 
       <section style={ letterGrade !== "" ? {visibility:"visible"}: {visibility:"hidden"}}>
-        <p>Your grade is "{letterGrade}''.</p>
+        <p>Your final grade is {grade}%.</p>
+        <p>Your grade is {letterGrade}.</p>
       </section>
 
       <section style={ grade > 0 ? {visibility:"visible"}: {visibility:"hidden"}}>
