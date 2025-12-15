@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState, type ChangeEvent } from "react";
 import { Alert } from "@mui/material";
 import GradeCard from "./GradeCard";
+import "../App.css";
 
 
 type AlertType = {
-    severity: string;
+    severity: string; 
     title: string;
     icon: string;
 }
@@ -16,6 +17,7 @@ const Calculator = () => {
   //score of the paper
   const [totalScore, setTotalScore] = useState<number>(0);
   //calculating the total score of the student
+  const [paperTotal, setPaperTotal] = useState<number>(0);
   const [calculatedScore, setCalculatedScore] = useState<number | null>(null);
   const [alertDetails, setAlertDetails] = useState<AlertType>({
     severity: "",
@@ -24,32 +26,40 @@ const Calculator = () => {
   });
 
   //scores of the student
-  const handleScoreChange = (e) => {
+  const handleScoreChange = (e: ChangeEvent<HTMLInputElement>) => {
     setScore(e.target.value);
-    console.log(score);
+    console.log(e.target.value);
   }
 
   //calculating the total score of the student
-  const calculateScore = (e):number => {
+  const calculateScore = (e: React.FormEvent<HTMLButtonElement>):number => {
     e.preventDefault()
     const markList = score.replace(" ", "").split(",");
     console.log(markList);
-    let total = 0;
-    markList.map((mark) => {total = Number(mark) + total});
-    console.log(total);
-    setCalculatedScore(total);
-    setScore("");
-    console.log(calculatedScore !== null ? ("Success!. Generating the grades shortly...") : "");
-    handleAlert(total);
-     return total;
+    // markList.map((mark) => {total = Number(mark) + total});
+    let total = markList.reduce((sum, mark) => sum += Number(mark), 0);
+    if(total <= 0){
+      console.log(total + " is not a valid number.");
+      total = 0;
+    }
+    else {
+      console.log(total);
+      setCalculatedScore(total);
+      setScore("");
+      setTotalScore(0);
+      // console.log(calculatedScore !== null ? ("Success!. Generating the grades shortly...") : "");
+      handleAlert(total);
+    }
+    return total;
   }
 
   //score of the paper
-  const handleTotalScoreChange = (e) => {
+  const handleTotalScoreChange = (e:ChangeEvent<HTMLInputElement>) => {
     const totalScore = Number(e.target.value);
     setTotalScore(totalScore);
-    console.log("The test is out of "+ totalScore);
-    return totalScore;
+    setPaperTotal(totalScore);
+    // console.log("The test is out of "+ paperTotal);
+    return paperTotal;
   }
 
   const handleAlert = (calculatedScore: number) => {
@@ -107,7 +117,7 @@ const Calculator = () => {
     </section>
         <br/>
       <section>
-       {calculatedScore !== null ? (<GradeCard studentTotal={calculatedScore} paperTotal={totalScore}/>) : (<p> Generating the grades shortly...</p>)}
+       {calculatedScore !== null ? (<GradeCard studentTotal={calculatedScore} paperTotal={paperTotal}/>) : (<p> Generating the grades shortly...</p>)}
       </section>
         </div>
   );
