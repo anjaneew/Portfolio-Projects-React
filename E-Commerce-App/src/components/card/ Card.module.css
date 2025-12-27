@@ -1,0 +1,47 @@
+/* Card component */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-weight {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.weight {
+  display: inline-block;
+}
+
+.card-price {
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: 700;
+}
