@@ -10,4 +10,4 @@ const Button = ({ onClickHandler, value, btntitle }: ButtonPropType) => {
   );
 };
 
-export { type ButtonPropType, Button} ;
+export default Button;
