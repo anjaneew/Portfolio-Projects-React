@@ -2,7 +2,7 @@ import Button from "../Button";
 import "./Recommended.module.css";
 
 
-const Recommended = ({ handleClick }: ()=> void) => {
+const Recommended = ({ handleClick }: {handleClick: ()=> void}) => {
   return (
     <div>
         <h2 className="recommended-title">Recommended</h2>

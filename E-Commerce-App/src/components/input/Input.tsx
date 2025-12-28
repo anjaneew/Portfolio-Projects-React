@@ -1,7 +1,7 @@
 import "./Input.module.css";
 
 type InputPropType = {
-    handleChange: () => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
     title: string;
     name: string;

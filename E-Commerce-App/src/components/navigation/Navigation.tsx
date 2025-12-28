@@ -4,7 +4,7 @@ import { TbPlant2 } from "react-icons/tb";
 import "./Navigation.module.css";
 
 type NavPropType = {
-    handleInputChange: () => void;
+    handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     query: string;
 }
 
