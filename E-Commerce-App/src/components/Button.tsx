@@ -1,5 +1,5 @@
 type ButtonPropType = {
-    onClickHandler: () => void;
+    onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
     value: string;
     btntitle: string;
 }
@@ -10,4 +10,4 @@ const Button = ({ onClickHandler, value, btntitle }: ButtonPropType) => {
   );
 };
 
-export default Button;
+export {type ButtonPropType, Button};
