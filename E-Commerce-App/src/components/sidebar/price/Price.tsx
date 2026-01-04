@@ -7,8 +7,8 @@ const Price = ({ handleChange }: {handleChange: (e: React.ChangeEvent<HTMLInputE
     <div className={styles.ml}>
       <h2 className={`${styles.sidebarTitle} ${styles.priceTitle}`}>Price</h2>
 
-      <label htmlFor="price" className={styles.sidebarLabelContainer}>
-        <input onChange={handleChange} type="radio" value="" name="price"/>
+      <label htmlFor="all2" className={styles.sidebarLabelContainer}>
+        <input onChange={handleChange} type="radio" value="" id="all2" name="price"/>
         <span className={styles.checkmark}></span>All
       </label>
 

@@ -1,7 +1,27 @@
-.priceTitle {
+/* .priceTitle {
   margin-top: 20px;
 }
 
 .ml {
   margin-left: 20px;
+} */
+
+.sidebarLabelContainer {
+    display: block;  /* Each label on its own line */
+    color: #654321;
+    margin-bottom: 10px;
+    font-size: large;
+    font-weight: bold; 
 }
+
+.sidebarLabelContainer:hover {
+  background-color: #DEB887;
+  color: #241714; 
+  font-weight: bold;
+}
+
+
+.sidebarLabelContainer:hover:has(.sidebarInput:checked) {
+  color: #1d1310;
+}
+

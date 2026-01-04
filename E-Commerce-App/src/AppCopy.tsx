@@ -16,7 +16,6 @@ const App = () => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedCategory("")
     setQuery(e.target.value);
   }
 
@@ -87,7 +86,7 @@ const App = () => {
   return (
     <div className="banner">
       <div>
-        <h1 className="siteTitle">~Upali Agro~</h1>
+        <h1 className="siteTitle">Upali Agro</h1>
         <Navigation query={query} handleInputChange={handleInputChange}/>
         {/* <Recommended handleClick={handleClick}/> */}
       </div>

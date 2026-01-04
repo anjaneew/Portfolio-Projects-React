@@ -1,10 +1,11 @@
-/* * {
+*{
   padding: 0;
-  margin: 15px;
+  margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", "Open Sans", sans-serif;
 }
 
+/*
 a {
   text-decoration: none;
   color: rgb(12, 78, 42);
@@ -40,3 +41,35 @@ p{
   padding: 5px 10px;
   font-family: "Roboto", "Open Sans", sans-serif;
 } */
+/* -------------------------------- */
+.banner{
+  padding: 20px;
+  background-image: url("../public/mohammad-mardani-U_Mkmwb57Fk-unsplash.jpg"); 
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+  background-attachment: fixed;
+   min-height: 100vh;
+}
+
+.siteTitle{
+    text-align: center;
+  padding: 10px 15px;
+  font-style: italic;
+  font-family: "Roboto", "Open Sans", sans-serif;
+  color: #f5f5f5;
+}
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+  .banner {
+    padding: 10px;
+    background-attachment: scroll; /* Fixed background doesn't work well on mobile */
+    background-size: cover;
+  }
+  
+  .siteTitle {
+    font-size: 1.5rem;
+    padding: 10px 5px;
+  }
+}

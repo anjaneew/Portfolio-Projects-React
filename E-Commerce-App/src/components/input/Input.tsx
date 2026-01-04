@@ -1,4 +1,4 @@
-import "./Input.module.css";
+import styles from  "./Input.module.css";
 
 type InputPropType = {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,15 +9,17 @@ type InputPropType = {
 
 const Input = ({handleChange, value, title, name}: InputPropType) => {
   return (
-    <label className="sidebar-label-container">
+    <label htmlFor={`${name}-${value}`} className={styles.sidebarLabelContainer}>
         <input 
             onChange={handleChange} 
             type="radio" 
             value={value}
             name={name} 
-        />
+            id={`${name}-${value}`}
+            className={styles.sidebarInput}
+        />{title}
         <span className="checkmark"></span>
-        {title}
+        
     </label>
   );
 };
